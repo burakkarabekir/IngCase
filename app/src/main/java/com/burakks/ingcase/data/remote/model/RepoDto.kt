@@ -92,8 +92,6 @@ data class RepoDto(
     val language: String,
     @SerializedName("languages_url")
     val languagesUrl: String,
-    @SerializedName("license")
-    val license: License,
     @SerializedName("merges_url")
     val mergesUrl: String,
     @SerializedName("milestones_url")

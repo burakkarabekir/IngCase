@@ -8,7 +8,7 @@ interface RepoService {
 
     @GET(REPOS)
     suspend fun fetchRepos(
-        @Path(PATH_USER_NAME) userName: String
+        @Path(PATH_USER_NAME) username: String
     ): List<RepoDto>
 
     companion object {
