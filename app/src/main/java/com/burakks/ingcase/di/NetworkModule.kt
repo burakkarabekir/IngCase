@@ -1,6 +1,7 @@
 package com.burakks.ingcase.di
 
 import com.burakks.ingcase.BuildConfig
+import com.burakks.ingcase.data.remote.model.RepoDtoMapper
 import com.burakks.ingcase.data.remote.service.RepoService
 import com.burakks.ingcase.util.Constants.BASE_URL
 import dagger.Module
@@ -30,6 +31,11 @@ object NetworkModule {
                       .build()
                       .create(RepoService::class.java)
     }
+
+    @Singleton
+    @Provides
+    fun provideRepoDtoMapper(): RepoDtoMapper = RepoDtoMapper()
+
 
     @Singleton
     @Provides

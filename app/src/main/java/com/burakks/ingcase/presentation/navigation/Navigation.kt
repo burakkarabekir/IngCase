@@ -1,24 +1,33 @@
 package com.burakks.ingcase.presentation.navigation
 
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.ExperimentalComposeUiApi
+import androidx.compose.ui.Modifier
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.burakks.ingcase.domain.model.Repo
 import com.burakks.ingcase.presentation.repo_detail.RepoDetailScreen
-import com.burakks.ingcase.presentation.repos.ReposScreen
+import com.burakks.ingcase.presentation.repo_list.RepoListScreen
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
+@ExperimentalComposeUiApi
+@ExperimentalCoroutinesApi
+@ExperimentalFoundationApi
 @Composable
-fun Navigation() {
-    val navController = rememberNavController()
-
+fun Navigation(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = Screen.ReposScreen.route
+        startDestination = Screen.RepoListScreen.route,
+        modifier = Modifier.fillMaxSize()
     ) {
         composable(
-            Screen.ReposScreen.route
+            Screen.RepoListScreen.route
         ) {
-            ReposScreen(
+            RepoListScreen(
                 navController = navController,
             )
         }
@@ -26,7 +35,8 @@ fun Navigation() {
             Screen.RepoDetailScreen.route,
         ) {
             RepoDetailScreen(
-                navController = navController
+                navController = navController,
+                repo = Repo(1, "Birak", "adasda")
             )
         }
     }

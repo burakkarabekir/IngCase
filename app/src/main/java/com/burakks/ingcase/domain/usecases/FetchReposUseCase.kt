@@ -20,7 +20,7 @@ class FetchReposUseCase(
         isNetworkAvailable: Boolean = true // check internet connection
     ): Flow<DataState<List<Repo>>> = flow {
         try {
-             emit(DataState.loading())
+            emit(DataState.loading())
 
             if (isNetworkAvailable) {
                 val repos = fetchRepos(username)
@@ -35,12 +35,12 @@ class FetchReposUseCase(
 
             emit(DataState.success(list))
 
-        }   catch (e: Exception){
+        } catch (e: Exception) {
             emit(DataState.error<List<Repo>>(e.message ?: "Error"))
         }
     }
 
-    private suspend fun fetchRepos(username: String): List<Repo>{
+    private suspend fun fetchRepos(username: String): List<Repo> {
         return dtoMapper.toDomainList(
             repoService.fetchRepos(username)
         )
