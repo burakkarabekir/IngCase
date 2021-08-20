@@ -11,7 +11,9 @@ class RepoEntityMapper : DomainMapper<RepoEntity, Repo> {
             url = entity.url,
             isLiked = entity.isLiked,
             openIssueCount = entity.openIssuesCount,
-            stargazersCount = entity.stargazersCount
+            stargazersCount = entity.stargazersCount,
+            forksCount = entity.forksCount,
+            watchersCount = entity.watchersCount
         )
     }
 
@@ -22,9 +24,12 @@ class RepoEntityMapper : DomainMapper<RepoEntity, Repo> {
             url = domainModel.url,
             isLiked = domainModel.isLiked,
             openIssuesCount = domainModel.openIssueCount,
-            stargazersCount = domainModel.stargazersCount
+            stargazersCount = domainModel.stargazersCount,
+            forksCount = domainModel.forksCount,
+            watchersCount = domainModel.watchersCount
         )
     }
+
     fun mapItemFromDomainModel(domainModel: Repo): RepoEntity {
         return RepoEntity(
             id = domainModel.id,
@@ -32,7 +37,9 @@ class RepoEntityMapper : DomainMapper<RepoEntity, Repo> {
             url = domainModel.url,
             isLiked = domainModel.isLiked,
             openIssuesCount = domainModel.openIssueCount,
-            stargazersCount = domainModel.stargazersCount
+            stargazersCount = domainModel.stargazersCount,
+            forksCount = domainModel.forksCount,
+            watchersCount = domainModel.watchersCount
         )
     }
 
@@ -41,13 +48,14 @@ class RepoEntityMapper : DomainMapper<RepoEntity, Repo> {
     }
 
     fun toEntity(initial: Repo): RepoEntity {
-        return  mapFromDomainModel(initial)
+        return mapFromDomainModel(initial)
     }
+
     fun fromEntityList(initial: List<RepoEntity>): List<Repo> {
         return initial.map { mapToDomainModel(it) }
     }
 
     fun fromEntity(initial: RepoEntity): Repo {
-        return  mapToDomainModel(initial)
+        return mapToDomainModel(initial)
     }
 }

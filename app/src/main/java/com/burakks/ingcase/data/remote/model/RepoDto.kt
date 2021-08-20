@@ -12,7 +12,7 @@ data class RepoDto(
 
     @SerializedName("name")
     val name: String,
-    
+
     @SerializedName("url")
     val url: String,
 
@@ -31,5 +31,11 @@ data class RepoDto(
     @SerializedName("stargazers_count")
     val stargazersCount: Int,
 
-    val isLiked: Boolean
+    @SerializedName("watchers_count")
+    val watchersCount: Int,
+
+    @SerializedName("forks_count")
+    val forksCount: Int,
+
+    val isLiked: Boolean = false
 )

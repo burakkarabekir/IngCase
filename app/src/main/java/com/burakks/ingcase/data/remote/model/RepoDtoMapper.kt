@@ -11,7 +11,9 @@ class RepoDtoMapper : DomainMapper<RepoDto, Repo> {
             entity.url,
             entity.isLiked,
             entity.openIssuesCount,
-            entity.stargazersCount
+            entity.stargazersCount,
+            entity.forksCount,
+            entity.watchersCount
         )
     }
 
@@ -26,7 +28,8 @@ class RepoDtoMapper : DomainMapper<RepoDto, Repo> {
             false,
             "",
             domainModel.stargazersCount,
-            false
+            domainModel.forksCount,
+            domainModel.watchersCount,
             )
     }
 

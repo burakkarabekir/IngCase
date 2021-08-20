@@ -11,4 +11,6 @@
     <string name="profile">Profile</string>
     <string name="star">Star</string>
     <string name="issues">Issues</string>
+    <string name="watch">Watch</string>
+    <string name="fork">Fork</string>
 </resources>

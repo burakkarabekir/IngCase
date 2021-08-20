@@ -18,7 +18,7 @@ class RepoDetailViewModel @Inject constructor(
     private val fetchRepoUseCase: FetchRepoUseCase,
 ) : ViewModel() {
 
-    val repo: MutableState<Repo> = mutableStateOf(Repo(1,"","",false,2,1))
+    val repo: MutableState<Repo> = mutableStateOf(Repo(1,"","",false,2,1,1,1))
 
     fun getRepo(repoId: Int) {
         fetchRepoUseCase.execute(
