@@ -4,4 +4,11 @@
     <string name="home">Home</string>
     <string name="search">Search</string>
     <string name="username">Username</string>
+    <string name="repo_name">Repo Name</string>
+    <string name="unlike">Unlike</string>
+    <string name="like">Like</string>
+    <string name="search_icon">Search Icon</string>
+    <string name="profile">Profile</string>
+    <string name="star">Star</string>
+    <string name="issues">Issues</string>
 </resources>

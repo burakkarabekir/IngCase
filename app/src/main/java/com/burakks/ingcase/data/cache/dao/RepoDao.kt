@@ -1,9 +1,6 @@
 package com.burakks.ingcase.data.cache.dao
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.burakks.ingcase.data.cache.model.RepoEntity
 
 @Dao
@@ -13,6 +10,9 @@ interface RepoDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertRepos(repos: List<RepoEntity>): LongArray
+
+    @Update
+    suspend fun updateRepo(repo: RepoEntity)
 
     @Query("SELECT * FROM repos WHERE id = :id")
     suspend fun getRepoById(id: Int): RepoEntity?

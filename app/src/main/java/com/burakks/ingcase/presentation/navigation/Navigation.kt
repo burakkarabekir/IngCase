@@ -27,17 +27,16 @@ fun Navigation(navController: NavHostController) {
         composable(
             Screen.RepoListScreen.route
         ) {
-            RepoListScreen(
-                navController = navController,
-            )
+//            RepoListScreen(
+//                navController = navController,
+//            )
         }
         composable(
             Screen.RepoDetailScreen.route,
         ) {
-            RepoDetailScreen(
+           /* RepoDetailScreen(
                 navController = navController,
-                repo = Repo(1, "Birak", "adasda")
-            )
+            )*/
         }
     }
 

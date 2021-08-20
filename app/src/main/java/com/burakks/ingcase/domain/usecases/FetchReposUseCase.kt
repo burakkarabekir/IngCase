@@ -29,6 +29,7 @@ class FetchReposUseCase(
 
             // get results from the cache
             val cacheResult = repoDao.getAllRepos()
+            // TODO: 19.08.2021  val cacheResult = repoDao.getById()
 
             // emit from cache
             val list = entityMapper.fromEntityList(cacheResult)

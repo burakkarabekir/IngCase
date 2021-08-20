@@ -2,6 +2,8 @@ package com.burakks.ingcase.presentation.repo_list
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -14,7 +16,7 @@ import androidx.navigation.NavHostController
 import com.burakks.ingcase.R
 import com.burakks.ingcase.presentation.components.MainSearchBar
 import com.burakks.ingcase.presentation.components.MainTopAppBar
-import com.burakks.ingcase.presentation.components.RepoList
+import com.burakks.ingcase.presentation.components.RepoCard
 import com.burakks.ingcase.presentation.navigation.Screen
 import com.burakks.ingcase.ui.theme.SpaceMedium
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -25,11 +27,12 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 @Composable
 fun RepoListScreen(
     navController: NavHostController,
-    viewModel: RepoListViewModel = hiltViewModel()
+    viewModel: RepoListViewModel = hiltViewModel(),
 ) {
-    val repoList = viewModel.repos.value
+    val repos = viewModel.repos.value
     val query = viewModel.query.value
-
+    val isLiked = viewModel.isLiked.value
+//    val stateLike = remember { mutableStateOf(false)    }
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -53,15 +56,28 @@ fun RepoListScreen(
         )
 
         Spacer(modifier = Modifier.height(SpaceMedium))
-        
-        RepoList(
-            repos = repoList,
-            onRepoClick = {
-                navController.navigate(
-                    Screen.RepoDetailScreen.route
+
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(SpaceMedium)
+        ) {
+            itemsIndexed(
+                items = repos
+            ) { _, repo ->
+                RepoCard(
+                    repo = repo,
+                    modifier = Modifier.fillMaxWidth(),
+                    isLiked = isLiked,
+                    onLikeClick = {},
+                    onRepoClick = {
+                        navController.navigate(
+                            "repo_detail_screen/${repo.id}"
+                        )
+                    }
                 )
             }
-        )
+        }
 
     }
 }

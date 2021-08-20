@@ -68,7 +68,7 @@ fun MainSearchBar(
                 leadingIcon = {
                     Icon(
                         Icons.Default.Search,
-                        contentDescription = "Search Icon"
+                        contentDescription = stringResource(R.string.search_icon)
                     )
                 },
                 trailingIcon = {
@@ -85,7 +85,10 @@ fun MainSearchBar(
                     backgroundColor = colorResource(id = R.color.white)
                 )
             )
-            Button(onClick = onExecuteSearch) {
+            Button(onClick = {
+                onExecuteSearch()
+                keyboardController?.hide()
+            }) {
                       Text(text = stringResource(id = R.string.search))
             }
         }

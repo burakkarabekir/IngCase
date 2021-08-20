@@ -14,29 +14,39 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RepoListViewModel @Inject constructor(
-    private val useCase: FetchReposUseCase
-): ViewModel() {
+    private val fetchReposUseCase: FetchReposUseCase,
+) : ViewModel() {
     val repos: MutableState<List<Repo>> = mutableStateOf(listOf())
     val query = mutableStateOf("")
+    val isLiked = mutableStateOf(false)
 
     fun fetchRepos(_query: String?) {
         val query = _query?.trim() ?: return
         if (query.length <= MIN_SEARCHABLE_LENGTH) return
-            useCase.execute(
-                username = query
-            ).onEach { dataState ->
-                dataState.data?.let { list ->
-                    repos.value = list
-                }
+        fetchReposUseCase.execute(
+            username = query
+        ).onEach { dataState ->
+            dataState.data?.let { list ->
+                repos.value = list
+            }
 
-                dataState.error?.let { error ->
-                    e("Error while fetching repos. $error")
-                }
-            }.launchIn(viewModelScope)
+            dataState.error?.let { error ->
+                e("Error while fetching repos. $error")
+            }
+        }.launchIn(viewModelScope)
     }
 
-    fun onQueryChanged(query: String){
+    fun onQueryChanged(query: String) {
         this.query.value = query
+
+    }
+
+    fun onLikeStatusChanged(isLiked: Boolean) {
+        this.isLiked.value = isLiked
+
+    }
+
+    fun updateRepo(repo: Repo){
 
     }
 
