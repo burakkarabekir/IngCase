@@ -31,10 +31,7 @@ import com.burakks.ingcase.R
 import com.burakks.ingcase.domain.model.Repo
 import com.burakks.ingcase.domain.util.DataState
 import com.burakks.ingcase.presentation.components.MainTopAppBar
-import com.burakks.ingcase.ui.theme.ElevationSmall
-import com.burakks.ingcase.ui.theme.RadiusMedium
-import com.burakks.ingcase.ui.theme.SpaceMedium
-import com.burakks.ingcase.ui.theme.SpaceSmall
+import com.burakks.ingcase.ui.theme.*
 import timber.log.Timber.d
 
 const val OWNER_IMAGE_SIZE = 96
@@ -145,11 +142,13 @@ fun OwnerStatus(
             ) {
                 Icon(
                     icon,
-                    contentDescription = stringResource(id = R.string.watch),
+                    contentDescription = stringResource(id = R.string.status),
+                    tint = MediumGray
                 )
                 Text(
                     text = text,
                     textAlign = TextAlign.Center,
+                    color = DarkGray,
                     modifier = modifier
                         .background(Color(0xFFF3F4F6))
                         .padding(SpaceSmall),
@@ -161,6 +160,7 @@ fun OwnerStatus(
             Text(
                 text = number,
                 textAlign = TextAlign.Center,
+                color = DarkGray,
                 style = MaterialTheme.typography.body1.copy(
                     fontSize = 24.sp
                 ),

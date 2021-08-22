@@ -13,4 +13,5 @@
     <string name="issues">Issues</string>
     <string name="watch">Watch</string>
     <string name="fork">Fork</string>
+    <string name="status">Status</string>
 </resources>

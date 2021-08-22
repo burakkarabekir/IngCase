@@ -18,10 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.burakks.ingcase.R
 import com.burakks.ingcase.domain.model.Repo
-import com.burakks.ingcase.ui.theme.ElevationSmall
-import com.burakks.ingcase.ui.theme.RadiusSmall
-import com.burakks.ingcase.ui.theme.SpaceMedium
-import com.burakks.ingcase.ui.theme.SpaceSmall
+import com.burakks.ingcase.ui.theme.*
 import com.burakks.ingcase.util.Constants
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
@@ -41,12 +38,14 @@ fun RepoCard(
             .fillMaxWidth()
             .padding(SpaceSmall)
             .clickable(onClick = onRepoClick),
+        backgroundColor = TextWhite,
         elevation = ElevationSmall,
     ) {
         Row(
             modifier = modifier
                 .padding(
                     horizontal = SpaceMedium,
+                    vertical = SpaceSmall
                 ),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
@@ -56,12 +55,13 @@ fun RepoCard(
                     .weight(8f),
                 text = repo.name ?: stringResource(R.string.repo_name),
                 style = MaterialTheme.typography.body1.copy(
-                    fontSize = 24.sp
+                    fontSize = 18.sp
                 ),
+                color = DarkGray,
                 overflow = TextOverflow.Ellipsis,
                 maxLines = Constants.MAX_POST_DESCRIPTION_LINES
             )
-            IconButton(
+            /*IconButton(
                 modifier = Modifier
                     .weight(2f)
                     .size(iconSize),
@@ -83,7 +83,7 @@ fun RepoCard(
                         stringResource(id = R.string.like)
                     }
                 )
-            }
+            }*/
 
         }
     }
