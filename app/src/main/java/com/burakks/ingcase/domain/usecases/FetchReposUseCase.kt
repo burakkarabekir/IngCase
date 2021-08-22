@@ -24,6 +24,7 @@ class FetchReposUseCase(
 
             if (isNetworkAvailable) {
                 val repos = fetchRepos(username)
+                repoDao.deleteAllRepos()
                 repoDao.insertRepos(entityMapper.toEntityList(repos))
             }
 

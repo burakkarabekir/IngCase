@@ -79,6 +79,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07'
     implementation 'com.google.accompanist:accompanist-coil:0.15.0'
     implementation "androidx.constraintlayout:constraintlayout-compose:1.0.0-beta02"
+    implementation 'org.chromium.net:cronet-embedded:92.4515.131'
 
     // Dagger2
     def dagger_version = "2.38.1"

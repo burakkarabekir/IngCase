@@ -29,7 +29,7 @@ interface RepoDao {
     @Query(
         """
         SELECT * FROM repos 
-        ORDER BY name DESC """
+        ORDER BY id DESC """
     )
     suspend fun getAllRepos(
     ): List<RepoEntity>
