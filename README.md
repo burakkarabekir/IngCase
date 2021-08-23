@@ -2,7 +2,8 @@
 Github Android client app that gets data from a Github API and shows user repositories.
 
 # List to Detail screen
-![](https://github.com/burakkarabekir/IngCase/tree/master/intro/demo.gif)
+![Github Android Client Demo](https://github.com/burakkarabekir/IngCase/tree/master/intro/demo.gif)
+
 # API
 https://api.github.com/
 
