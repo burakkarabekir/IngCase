@@ -38,7 +38,7 @@ fun fetchRepos(_query: String?) {
                     is ConnectionType.Available -> {
                         i("Connection type Available")
                         isConnected.value = true
-                        fetchReposUseCase.execute(
+                        fetchReposUseCase.run(
                             username = query
                         ).onEach { dataState ->
                             dataState.data?.let { list ->

@@ -4,6 +4,7 @@ import com.burakks.ingcase.data.cache.dao.RepoDao
 import com.burakks.ingcase.data.cache.model.RepoEntityMapper
 import com.burakks.ingcase.data.remote.model.RepoDtoMapper
 import com.burakks.ingcase.data.remote.service.RepoService
+import com.burakks.ingcase.domain.repositories.RepoRepository
 import com.burakks.ingcase.domain.usecases.repo_detail.FetchRepoDetailUseCase
 import com.burakks.ingcase.domain.usecases.repo_list.FetchReposUseCase
 import dagger.Module
@@ -19,16 +20,10 @@ object UseCaseModule {
     @ViewModelScoped
     @Provides
     fun provideFetchReposUseCase(
-        repoDao: RepoDao,
-        repoService: RepoService,
-        entityMapper: RepoEntityMapper,
-        dtoMapper: RepoDtoMapper
+        repository: RepoRepository,
     ): FetchReposUseCase {
         return FetchReposUseCase(
-            repoDao= repoDao,
-            repoService= repoService,
-            entityMapper= entityMapper,
-            dtoMapper= dtoMapper
+           repository = repository
         )
     }
 
