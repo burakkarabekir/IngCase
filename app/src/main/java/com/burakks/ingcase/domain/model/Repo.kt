@@ -12,5 +12,6 @@ data class Repo(
     val openIssueCount: Int,
     val stargazersCount: Int,
     val forksCount: Int,
-    val watchersCount: Int
+    val watchersCount: Int,
+    val description: String? = null
 ) : Parcelable

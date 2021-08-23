@@ -6,7 +6,6 @@ import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -26,7 +25,7 @@ fun MainTopAppBar(
     TopAppBar(
         title = title,
         modifier = modifier,
-        navigationIcon = if(showBackArrow) {
+        navigationIcon = if (showBackArrow) {
             {
                 IconButton(onClick = {
                     navController.navigateUp()

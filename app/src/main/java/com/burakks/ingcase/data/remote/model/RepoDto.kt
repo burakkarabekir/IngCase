@@ -37,5 +37,8 @@ data class RepoDto(
     @SerializedName("forks_count")
     val forksCount: Int,
 
-    val isLiked: Boolean = false
+    val isLiked: Boolean = false,
+
+    @SerializedName("description")
+    val description: String,
 )

@@ -30,4 +30,7 @@ data class RepoEntity(
 
     @ColumnInfo(name = "forks_count")
     val forksCount: Int,
+
+    @ColumnInfo(name = "description")
+    val description: String,
 )

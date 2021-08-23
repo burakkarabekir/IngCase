@@ -13,24 +13,26 @@ class RepoDtoMapper : DomainMapper<RepoDto, Repo> {
             entity.openIssuesCount,
             entity.stargazersCount,
             entity.forksCount,
-            entity.watchersCount
+            entity.watchersCount,
+            entity.description
         )
     }
 
     override fun mapFromDomainModel(domainModel: Repo): RepoDto {
         return RepoDto(
-            "",
-            domainModel.id,
-            domainModel.name,
-            domainModel.url,
-            domainModel.openIssueCount,
-            Owner("", ""),
-            false,
-            "",
-            domainModel.stargazersCount,
-            domainModel.forksCount,
-            domainModel.watchersCount,
-            )
+            fullName = "",
+            id = domainModel.id,
+            name = domainModel.name,
+            url = domainModel.url,
+            openIssuesCount = domainModel.openIssueCount,
+            owner = Owner("", ""),
+            private = false,
+            pushedAt = "",
+            stargazersCount = domainModel.stargazersCount,
+            watchersCount = domainModel.forksCount,
+            forksCount = domainModel.watchersCount,
+            description = domainModel.description ?:  "Repo Description"
+        )
     }
 
     fun toDomainList(initial: List<RepoDto>): List<Repo> {

@@ -21,6 +21,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -34,6 +35,7 @@ import com.burakks.ingcase.domain.util.DataState
 import com.burakks.ingcase.presentation.components.MainTopAppBar
 import com.burakks.ingcase.presentation.components.OwnerStatus
 import com.burakks.ingcase.ui.theme.*
+import com.burakks.ingcase.util.Constants.MAX_POST_DESCRIPTION_LINES
 import timber.log.Timber.d
 
 const val OWNER_IMAGE_SIZE = 96
@@ -60,10 +62,14 @@ fun RepoDetailScreen(
             modifier = Modifier.fillMaxWidth(),
             title = {
                 Text(
-                    text = repo.name ?: "Repo Detail Page",
+                    text = repo.name,
                     fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colors.onBackground
-                )
+                    color = MaterialTheme.colors.onBackground,
+                    maxLines = MAX_POST_DESCRIPTION_LINES,
+                    overflow = TextOverflow.Ellipsis,
+                        modifier = Modifier
+                            .padding(end = SpaceMedium)
+                    )
             },
             showBackArrow = true
         )
@@ -75,7 +81,7 @@ fun RepoDetailScreen(
         ) {
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.Top
             ) {
                 if (repo.id != null) {
                     Image(
@@ -95,9 +101,10 @@ fun RepoDetailScreen(
                 }
 
                 Text(
-                    text = repo.name ?: "Repo Detail Page",
+                    text = repo.description ?: stringResource(R.string.description),
                     modifier = Modifier
-                        .padding(SpaceMedium)
+                        .padding(
+                            horizontal = SpaceMedium)
                     )
             }
             Spacer(modifier = Modifier.height(SpaceMedium))

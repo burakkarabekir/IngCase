@@ -13,7 +13,8 @@ class RepoEntityMapper : DomainMapper<RepoEntity, Repo> {
             openIssueCount = entity.openIssuesCount,
             stargazersCount = entity.stargazersCount,
             forksCount = entity.forksCount,
-            watchersCount = entity.watchersCount
+            watchersCount = entity.watchersCount,
+            description = entity.description
         )
     }
 
@@ -26,7 +27,8 @@ class RepoEntityMapper : DomainMapper<RepoEntity, Repo> {
             openIssuesCount = domainModel.openIssueCount,
             stargazersCount = domainModel.stargazersCount,
             forksCount = domainModel.forksCount,
-            watchersCount = domainModel.watchersCount
+            watchersCount = domainModel.watchersCount,
+            description = domainModel.description ?: "Repo Description"
         )
     }
 
@@ -39,7 +41,8 @@ class RepoEntityMapper : DomainMapper<RepoEntity, Repo> {
             openIssuesCount = domainModel.openIssueCount,
             stargazersCount = domainModel.stargazersCount,
             forksCount = domainModel.forksCount,
-            watchersCount = domainModel.watchersCount
+            watchersCount = domainModel.watchersCount,
+            description = domainModel.description ?: "Repo Description"
         )
     }
 
