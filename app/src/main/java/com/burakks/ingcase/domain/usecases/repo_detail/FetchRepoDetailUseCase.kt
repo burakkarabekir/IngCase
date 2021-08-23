@@ -1,4 +1,4 @@
-package com.burakks.ingcase.domain.usecases
+package com.burakks.ingcase.domain.usecases.repo_detail
 
 import com.burakks.ingcase.data.cache.dao.RepoDao
 import com.burakks.ingcase.data.cache.model.RepoEntityMapper
@@ -9,7 +9,7 @@ import com.burakks.ingcase.domain.util.DataState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-class FetchRepoUseCase(
+class FetchRepoDetailUseCase(
     private val repoDao: RepoDao,
     private val entityMapper: RepoEntityMapper,
 ) {

@@ -1,4 +1,4 @@
-package com.burakks.ingcase.domain.usecases
+package com.burakks.ingcase.domain.usecases.repo_list
 
 import com.burakks.ingcase.data.cache.dao.RepoDao
 import com.burakks.ingcase.data.cache.model.RepoEntityMapper

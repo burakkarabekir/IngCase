@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.burakks.ingcase.domain.model.Repo
-import com.burakks.ingcase.domain.usecases.FetchReposUseCase
+import com.burakks.ingcase.domain.usecases.repo_list.FetchReposUseCase
 import com.burakks.ingcase.util.network.ConnectionType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.StateFlow
