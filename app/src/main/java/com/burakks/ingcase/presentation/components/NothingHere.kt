@@ -1,35 +1,37 @@
 package com.burakks.ingcase.presentation.components
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 import com.burakks.ingcase.R
+import com.burakks.ingcase.ui.theme.SpaceMedium
 
 @Composable
-fun NothingHere(){
+fun NothingHere() {
     Box(
-        modifier = Modifier.fillMaxSize()
-    ){
-        Column(modifier = Modifier.align(Alignment.Center)){
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.TopCenter
+    ) {
+        Column {
             Text(
-                modifier = Modifier.padding(8.dp).align(Alignment.CenterHorizontally),
+                modifier = Modifier
+                    .padding(SpaceMedium).align(Alignment.CenterHorizontally),
                 text = "¯\\_(ツ)_/¯",
-                style = TextStyle(fontSize = 55.sp)
+                style = MaterialTheme.typography.body1.copy(
+                    fontSize = 32.sp
+                ),
+
             )
             Text(
-                modifier = Modifier.padding(8.dp).align(Alignment.CenterHorizontally),
+                modifier = Modifier.padding(SpaceMedium).align(Alignment.CenterHorizontally),
                 text = stringResource(R.string.nothing_here),
-                style = MaterialTheme.typography.h4
+                style = MaterialTheme.typography.body1,
             )
         }
 

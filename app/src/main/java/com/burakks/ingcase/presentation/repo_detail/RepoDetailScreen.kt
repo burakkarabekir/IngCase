@@ -27,10 +27,12 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import coil.compose.rememberImagePainter
 import coil.transform.CircleCropTransformation
+import com.burakks.ingcase.BuildConfig
 import com.burakks.ingcase.R
 import com.burakks.ingcase.domain.model.Repo
 import com.burakks.ingcase.domain.util.DataState
 import com.burakks.ingcase.presentation.components.MainTopAppBar
+import com.burakks.ingcase.presentation.components.OwnerStatus
 import com.burakks.ingcase.ui.theme.*
 import timber.log.Timber.d
 
@@ -42,7 +44,7 @@ fun RepoDetailScreen(
     repoId: Int? = null,
     viewModel: RepoDetailViewModel = hiltViewModel()
 ) {
-    d("repoId :: ${repoId.toString()}")
+    if (BuildConfig.DEBUG) d("repoId :: ${repoId.toString()}")
 
     val repoInfo = produceState<DataState<Repo>>(initialValue = DataState.loading()) {
         viewModel.getRepo(repoId!!)
@@ -76,11 +78,10 @@ fun RepoDetailScreen(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 if (repo.id != null) {
-
                     Image(
                         modifier = Modifier.size(OWNER_IMAGE_SIZE.dp),
                         painter = rememberImagePainter(
-                            data = "https://avatars.githubusercontent.com/u/23719655?v=4",
+                            data = "https://avatars.githubusercontent.com/u/${repo.id}?v=4",
                             builder = {
 //                            crossfade(300)
                                 transformations(
@@ -93,7 +94,11 @@ fun RepoDetailScreen(
                     )
                 }
 
-                Text(text = repo.name ?: "Repo Detail Page")
+                Text(
+                    text = repo.name ?: "Repo Detail Page",
+                    modifier = Modifier
+                        .padding(SpaceMedium)
+                    )
             }
             Spacer(modifier = Modifier.height(SpaceMedium))
             Column(
@@ -113,62 +118,3 @@ fun RepoDetailScreen(
     }
 }
 
-@Composable
-fun OwnerStatus(
-    icon: ImageVector,
-    text: String,
-    number: String,
-    modifier: Modifier = Modifier
-) {
-    Card(
-        shape = RoundedCornerShape(RadiusMedium),
-        modifier = modifier
-            .wrapContentWidth()
-            .background(Color.White)
-            .padding(SpaceMedium),
-        elevation = ElevationSmall
-    ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = modifier
-                .background(Color.White)
-        ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Center,
-                modifier = modifier
-                    .weight(5f)
-                    .background(Color(0xFFF3F4F6))
-            ) {
-                Icon(
-                    icon,
-                    contentDescription = stringResource(id = R.string.status),
-                    tint = MediumGray
-                )
-                Text(
-                    text = text,
-                    textAlign = TextAlign.Center,
-                    color = DarkGray,
-                    modifier = modifier
-                        .background(Color(0xFFF3F4F6))
-                        .padding(SpaceSmall),
-                    style = MaterialTheme.typography.body1.copy(
-                        fontSize = 24.sp
-                    ),
-                )
-            }
-            Text(
-                text = number,
-                textAlign = TextAlign.Center,
-                color = DarkGray,
-                style = MaterialTheme.typography.body1.copy(
-                    fontSize = 24.sp
-                ),
-                modifier = modifier
-                    .padding(SpaceSmall)
-                    .weight(5f),
-            )
-        }
-    }
-
-}
