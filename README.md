@@ -10,8 +10,6 @@ https://api.github.com/
 ### User Repositories (GET)
 https://api.github.com/users/{user}/repos
 
-## Development
-
 ## Architecture
 
 - Single Activity
@@ -22,6 +20,8 @@ https://api.github.com/users/{user}/repos
 **ViewModel:** Can have simple UI logic but most of the time just gets the data from UseCase
 
 **UseCase:** Contains all business rules and they written in the manner of single responsibility principle
+
+**Repository:** Single source of data. Responsible to get data from one or more data sources
 
 ## Tech Stack
 
