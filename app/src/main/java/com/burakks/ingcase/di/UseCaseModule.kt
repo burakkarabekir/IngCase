@@ -30,12 +30,10 @@ object UseCaseModule {
     @ViewModelScoped
     @Provides
     fun provideFetchRepoDetailUseCase(
-        repoDao: RepoDao,
-        entityMapper: RepoEntityMapper,
+        repository: RepoRepository
     ): FetchRepoDetailUseCase {
         return FetchRepoDetailUseCase(
-            repoDao= repoDao,
-            entityMapper= entityMapper,
+           repository = repository
         )
     }
 }

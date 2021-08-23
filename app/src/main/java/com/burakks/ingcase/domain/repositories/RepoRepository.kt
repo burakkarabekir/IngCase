@@ -35,4 +35,22 @@ class RepoRepository @Inject constructor(
             emit(DataState.error<List<Repo>>(e.message ?: "Error"))
         }
     }
+
+    fun execute(
+        repoId: Int,
+    ): Flow<DataState<Repo>> = flow {
+        try {
+            emit(DataState.loading())
+
+            val repo =localDataSource.getRepoById(repoId)
+
+            // emit from cache
+            val list = localDataSource.emitFromCacheById(repo!!)
+
+            emit(DataState.success(list))
+
+        } catch (e: Exception) {
+            emit(DataState.error<Repo>(e.message ?: "Error"))
+        }
+    }
 }

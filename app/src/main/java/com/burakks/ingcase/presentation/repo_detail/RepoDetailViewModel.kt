@@ -9,6 +9,7 @@ import com.burakks.ingcase.domain.usecases.repo_detail.FetchRepoDetailUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import timber.log.Timber.e
 import javax.inject.Inject
 
@@ -17,19 +18,21 @@ class RepoDetailViewModel @Inject constructor(
     private val fetchRepoDetailUseCase: FetchRepoDetailUseCase,
 ) : ViewModel() {
 
-    val repo: MutableState<Repo> = mutableStateOf(Repo(1,"","",false,2,1,1,1))
+    val repo: MutableState<Repo> = mutableStateOf(Repo(1, "", "", false, 2, 1, 1, 1))
 
     fun getRepo(repoId: Int) {
-        fetchRepoDetailUseCase.execute(
-            repoId = repoId
-        ).onEach { dataState ->
-            dataState.data?.let {
-                repo.value = it
-            }
+        viewModelScope.launch {
+            fetchRepoDetailUseCase.run(
+                repoId = repoId
+            ).onEach { dataState ->
+                dataState.data?.let {
+                    repo.value = it
+                }
 
-            dataState.error?.let { error ->
-                e("Error while fetching repos. $error")
-            }
-        }.launchIn(viewModelScope)
+                dataState.error?.let { error ->
+                    e("Error while fetching repos. $error")
+                }
+            }.launchIn(viewModelScope)
+        }
     }
 }

@@ -19,8 +19,16 @@ class RepoLocalDataSource @Inject constructor(
         return repoDao.getAllRepos()
     }
 
+    suspend fun getRepoById(repoId: Int): RepoEntity? {
+        return repoDao.getRepoById(repoId)
+    }
+
     fun emitFromCache(cacheResult: List<RepoEntity>): List<Repo> {
         return entityMapper.fromEntityList(cacheResult)
+    }
+
+    fun emitFromCacheById(repo: RepoEntity): Repo {
+        return entityMapper.fromEntity(repo)
     }
 
 }
