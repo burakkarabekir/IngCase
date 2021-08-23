@@ -18,7 +18,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 @ExperimentalCoroutinesApi
 @ExperimentalFoundationApi
 @Composable
-fun Navigation(navController: NavHostController) {
+fun MainNavigation(navController: NavHostController) {
     NavHost(
         navController = navController,
         startDestination = Screen.RepoListScreen.route,
@@ -27,16 +27,18 @@ fun Navigation(navController: NavHostController) {
         composable(
             Screen.RepoListScreen.route
         ) {
-//            RepoListScreen(
-//                navController = navController,
-//            )
+            RepoListScreen(
+                navController = navController,
+            )
         }
         composable(
-            Screen.RepoDetailScreen.route,
-        ) {
-           /* RepoDetailScreen(
+            Screen.RepoDetailScreen.route + "/{repoId}",
+            arguments = Screen.RepoDetailScreen.arguments
+        ) { entry ->
+            RepoDetailScreen(
                 navController = navController,
-            )*/
+                entry.arguments?.getInt("repoId")
+            )
         }
     }
 
