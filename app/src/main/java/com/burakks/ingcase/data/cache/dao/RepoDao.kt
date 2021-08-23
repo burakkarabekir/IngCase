@@ -33,4 +33,10 @@ interface RepoDao {
     )
     suspend fun getAllRepos(
     ): List<RepoEntity>
+
+    @Query("SELECT COUNT(*) FROM repos")
+    suspend fun getRepoCount(): Int
+
+    @Query("SELECT EXISTS(SELECT * FROM repos)")
+    suspend fun doRepoExist(): Boolean
 }
