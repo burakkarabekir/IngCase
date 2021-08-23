@@ -20,7 +20,6 @@ class RepoDtoMapper : DomainMapper<RepoDto, Repo> {
 
     override fun mapFromDomainModel(domainModel: Repo): RepoDto {
         return RepoDto(
-            fullName = "",
             id = domainModel.id,
             name = domainModel.name,
             url = domainModel.url,

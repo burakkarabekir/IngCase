@@ -25,17 +25,22 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
+    @Provides
+    @Singleton
+    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
+        return Retrofit.Builder()
+            .client(okHttpClient)
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
+
     @Singleton
     @Provides
     fun provideRepoService(
-        okHttpClient: OkHttpClient
+        retrofit: Retrofit
     ): RepoService {
-                  return Retrofit.Builder()
-                      .client(okHttpClient)
-                      .addConverterFactory(GsonConverterFactory.create())
-                      .baseUrl(BASE_URL)
-                      .build()
-                      .create(RepoService::class.java)
+        return retrofit.create(RepoService::class.java)
     }
 
     @Singleton
@@ -55,7 +60,7 @@ object NetworkModule {
         builder.addInterceptor(loggingInterceptor)
         return builder.build()
     }
-    
+
     @Provides
     @Singleton
     fun provideLoggingInterceptor(): HttpLoggingInterceptor {
