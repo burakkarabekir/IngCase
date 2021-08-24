@@ -2,6 +2,7 @@ package com.burakks.ingcase.presentation.navigation
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -12,6 +13,7 @@ import com.burakks.ingcase.presentation.repo_detail.RepoDetailScreen
 import com.burakks.ingcase.presentation.repo_list.RepoListScreen
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
+@ExperimentalMaterialApi
 @ExperimentalComposeUiApi
 @ExperimentalCoroutinesApi
 @ExperimentalFoundationApi

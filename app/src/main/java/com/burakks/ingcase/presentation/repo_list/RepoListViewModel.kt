@@ -25,8 +25,6 @@ class RepoListViewModel @Inject constructor(
     val repos: MutableState<List<Repo>> = mutableStateOf(listOf())
     val query = mutableStateOf("")
     val isConnected = mutableStateOf(true)
-    // val isQueryValid = mutableStateOf(true)
-    val isLiked = mutableStateOf(false)
     val isLoading = mutableStateOf(false)
 
     fun fetchRepos(_query: String?) {
@@ -70,16 +68,6 @@ class RepoListViewModel @Inject constructor(
 
     fun onQueryChanged(query: String) {
         this.query.value = query
-
-    }
-
-    fun onLikeStatusChanged(isLiked: Boolean) {
-        this.isLiked.value = isLiked
-
-    }
-
-    fun updateRepo(repo: Repo) {
-
     }
 
     companion object {

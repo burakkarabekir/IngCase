@@ -4,7 +4,7 @@ data class Repo(
     val id: Int,
     val name: String,
     val url: String,
-    val isLiked: Boolean,
+    var isLiked: Boolean,
     val openIssueCount: Int,
     val stargazersCount: Int,
     val forksCount: Int,

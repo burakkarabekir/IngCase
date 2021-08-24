@@ -3,6 +3,7 @@ package com.burakks.ingcase.di
 import com.burakks.ingcase.domain.repositories.RepoRepository
 import com.burakks.ingcase.domain.usecases.repo_detail.FetchRepoDetailUseCase
 import com.burakks.ingcase.domain.usecases.repo_list.FetchReposUseCase
+import com.burakks.ingcase.domain.usecases.repo_update.UpdateRepoUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -29,6 +30,16 @@ object UseCaseModule {
         repository: RepoRepository
     ): FetchRepoDetailUseCase {
         return FetchRepoDetailUseCase(
+            repository = repository
+        )
+    }
+
+    @ViewModelScoped
+    @Provides
+    fun provideUpdateRepoUseCase(
+        repository: RepoRepository
+    ): UpdateRepoUseCase {
+        return UpdateRepoUseCase(
             repository = repository
         )
     }

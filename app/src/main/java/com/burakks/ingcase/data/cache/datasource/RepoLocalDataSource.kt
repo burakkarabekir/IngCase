@@ -10,6 +10,11 @@ class RepoLocalDataSource @Inject constructor(
     private val repoDao: RepoDao,
     private val entityMapper: RepoEntityMapper,
 ) {
+
+    suspend fun updateRepo(repo: Repo) {
+        repoDao.updateRepo(entityMapper.toEntity(repo))
+    }
+
     suspend fun cacheRepos(repos: List<Repo>) {
         repoDao.deleteAllRepos()
         repoDao.insertRepos(entityMapper.toEntityList(repos))

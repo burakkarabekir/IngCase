@@ -4,6 +4,7 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -19,6 +20,7 @@ import com.burakks.ingcase.ui.theme.SpaceLarge
 import com.burakks.ingcase.ui.theme.SpaceSmall
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
+@ExperimentalMaterialApi
 @ExperimentalComposeUiApi
 @ExperimentalCoroutinesApi
 @ExperimentalFoundationApi
@@ -29,7 +31,6 @@ fun RepoListScreen(
 ) {
     val repos = viewModel.repos.value
     val query = viewModel.query.value
-    val isLiked = viewModel.isLiked.value
 
     val isConnected = viewModel.isConnected.value
     // val isQueryValid = viewModel.isQueryValid.value
@@ -73,16 +74,14 @@ fun RepoListScreen(
             ) { _, repo ->
                 RepoCard(
                     repo = repo,
-                    modifier = Modifier.fillMaxWidth(),
-                    isLiked = isLiked,
-                    onLikeClick = {},
-                    onRepoClick = {
-                        navController.navigate(
-                            "repo_detail_screen/${repo.id}"
-                        )
-                    }
-                )
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    navController.navigate(
+                        "repo_detail_screen/${repo.id}"
+                    )
+                }
             }
         }
     }
 }
+

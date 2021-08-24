@@ -1,18 +1,18 @@
 package com.burakks.ingcase.presentation.repo_detail
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountTree
-import androidx.compose.material.icons.filled.Error
-import androidx.compose.material.icons.filled.Star
-import androidx.compose.material.icons.filled.Watch
+import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.produceState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -93,6 +93,26 @@ fun RepoDetailScreen(
                     contentScale = ContentScale.Crop,
                 )
 
+                Icon(
+                    imageVector = Icons.Filled.Favorite,
+                    tint = if (repo.isLiked) {
+                        Color.Red
+                    } else {
+                        Color.Gray
+                    },
+                    contentDescription = if (repo.isLiked) {
+                        stringResource(id = R.string.unlike)
+                    } else {
+                        stringResource(id = R.string.like)
+                    },
+                    modifier = Modifier
+                        .align(Alignment.Bottom)
+                        .clickable {
+                            viewModel.onLikeStatusChanged(repo)
+                            d("action icon clicked :: ${repo.isLiked}")
+                        }
+                )
+
                 Text(
                     text = repo.description ?: stringResource(R.string.description),
                     modifier = Modifier
@@ -118,4 +138,3 @@ fun RepoDetailScreen(
         }
     }
 }
-

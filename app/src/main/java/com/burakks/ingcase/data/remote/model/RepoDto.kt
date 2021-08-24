@@ -19,9 +19,6 @@ data class RepoDto(
     @SerializedName("private")
     val `private`: Boolean,
 
-    @SerializedName("pushed_at")
-    val pushedAt: String,
-
     @SerializedName("stargazers_count")
     val stargazersCount: Int,
 
@@ -30,8 +27,6 @@ data class RepoDto(
 
     @SerializedName("forks_count")
     val forksCount: Int,
-
-    val isLiked: Boolean = false,
 
     @SerializedName("description")
     val description: String,

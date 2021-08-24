@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.burakks.ingcase.domain.model.Repo
 import com.burakks.ingcase.domain.usecases.repo_detail.FetchRepoDetailUseCase
+import com.burakks.ingcase.domain.usecases.repo_update.UpdateRepoUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -16,6 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class RepoDetailViewModel @Inject constructor(
     private val fetchRepoDetailUseCase: FetchRepoDetailUseCase,
+    private val updateRepoUseCase: UpdateRepoUseCase,
 ) : ViewModel() {
 
     val repo: MutableState<Repo> = mutableStateOf(Repo(1, "", "", false, 2, 1, 1, 1))
@@ -33,6 +35,19 @@ class RepoDetailViewModel @Inject constructor(
                     e("Error while fetching repos. $error")
                 }
             }.launchIn(viewModelScope)
+        }
+    }
+
+    fun onLikeStatusChanged(repo: Repo) {
+        repo.isLiked = !repo.isLiked
+        updateRepo(repo)
+    }
+
+    private fun updateRepo(repo: Repo) {
+        viewModelScope.launch {
+            updateRepoUseCase.run(
+                repo = repo
+            ).launchIn(viewModelScope)
         }
     }
 }

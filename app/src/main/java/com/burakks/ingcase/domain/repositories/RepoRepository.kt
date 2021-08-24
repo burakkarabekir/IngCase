@@ -49,4 +49,10 @@ class RepoRepository @Inject constructor(
             emit(DataState.error<Repo>(e.message ?: "Error"))
         }
     }
+
+    fun update(
+        repo: Repo,
+    ): Flow<DataState<Repo>> = flow {
+        localDataSource.updateRepo(repo)
+    }
 }
