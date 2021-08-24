@@ -30,7 +30,7 @@ class RepoDtoMapper : DomainMapper<RepoDto, Repo> {
             stargazersCount = domainModel.stargazersCount,
             watchersCount = domainModel.forksCount,
             forksCount = domainModel.watchersCount,
-            description = domainModel.description ?:  "Repo Description"
+            description = domainModel.description ?: "Repo Description"
         )
     }
 

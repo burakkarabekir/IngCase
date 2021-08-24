@@ -1,29 +1,23 @@
 package com.burakks.ingcase.presentation.repo_detail
 
-import android.graphics.drawable.Icon
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.filled.AccountTree
+import androidx.compose.material.icons.filled.Error
+import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.filled.Watch
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.produceState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import coil.compose.rememberImagePainter
@@ -34,7 +28,8 @@ import com.burakks.ingcase.domain.model.Repo
 import com.burakks.ingcase.domain.util.DataState
 import com.burakks.ingcase.presentation.components.MainTopAppBar
 import com.burakks.ingcase.presentation.components.OwnerStatus
-import com.burakks.ingcase.ui.theme.*
+import com.burakks.ingcase.ui.theme.SpaceMedium
+import com.burakks.ingcase.ui.theme.SpaceSmall
 import com.burakks.ingcase.util.Constants.MAX_POST_DESCRIPTION_LINES
 import timber.log.Timber.d
 
@@ -67,9 +62,9 @@ fun RepoDetailScreen(
                     color = MaterialTheme.colors.onBackground,
                     maxLines = MAX_POST_DESCRIPTION_LINES,
                     overflow = TextOverflow.Ellipsis,
-                        modifier = Modifier
-                            .padding(end = SpaceMedium)
-                    )
+                    modifier = Modifier
+                        .padding(end = SpaceMedium)
+                )
             },
             showBackArrow = true
         )
@@ -104,8 +99,9 @@ fun RepoDetailScreen(
                     text = repo.description ?: stringResource(R.string.description),
                     modifier = Modifier
                         .padding(
-                            horizontal = SpaceMedium)
-                    )
+                            horizontal = SpaceMedium
+                        )
+                )
             }
             Spacer(modifier = Modifier.height(SpaceMedium))
             Column(
@@ -115,10 +111,10 @@ fun RepoDetailScreen(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.SpaceBetween
             ) {
-                OwnerStatus(Icons.Default.Watch,text = stringResource(R.string.watch), number = repo.watchersCount.toString())
-                OwnerStatus(Icons.Default.Star,text = stringResource(R.string.star), number = repo.stargazersCount.toString())
-                OwnerStatus(Icons.Default.AccountTree,text = stringResource(R.string.fork), number = repo.forksCount.toString())
-                OwnerStatus(Icons.Default.Error,text = stringResource(R.string.issues), number = repo.openIssueCount.toString())
+                OwnerStatus(Icons.Default.Watch, text = stringResource(R.string.watch), number = repo.watchersCount.toString())
+                OwnerStatus(Icons.Default.Star, text = stringResource(R.string.star), number = repo.stargazersCount.toString())
+                OwnerStatus(Icons.Default.AccountTree, text = stringResource(R.string.fork), number = repo.forksCount.toString())
+                OwnerStatus(Icons.Default.Error, text = stringResource(R.string.issues), number = repo.openIssueCount.toString())
 
             }
         }

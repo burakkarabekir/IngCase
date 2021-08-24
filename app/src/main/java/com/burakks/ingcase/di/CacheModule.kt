@@ -26,7 +26,7 @@ object CacheModule {
     @Singleton
     @Provides
     fun provideRepoDao(db: AppDatabase): RepoDao {
-        return  db.repoDao()
+        return db.repoDao()
     }
 
     @Singleton

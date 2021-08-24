@@ -13,7 +13,8 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import timber.log.Timber.*
+import timber.log.Timber.e
+import timber.log.Timber.i
 import javax.inject.Inject
 
 @HiltViewModel
@@ -28,62 +29,62 @@ class RepoListViewModel @Inject constructor(
     val isLiked = mutableStateOf(false)
     val isLoading = mutableStateOf(false)
 
-fun fetchRepos(_query: String?) {
-    val query = _query?.trim() ?: return
-    if (query.length <= MIN_SEARCHABLE_LENGTH) return
+    fun fetchRepos(_query: String?) {
+        val query = _query?.trim() ?: return
+        if (query.length <= MIN_SEARCHABLE_LENGTH) return
 
-    viewModelScope.launch {
-        network
-            .onEach {
-                when(it) {
-                    is ConnectionType.Available -> {
-                        i("Connection type Available")
-                        isConnected.value = true
-                        fetchReposUseCase.run(
-                            username = query
-                        ).onEach { dataState ->
-                            isLoading.value = dataState.loading
-                            dataState.data?.let { list ->
-                                repos.value = list
-                                isQueryValid.value = true
-                            }
+        viewModelScope.launch {
+            network
+                .onEach {
+                    when (it) {
+                        is ConnectionType.Available -> {
+                            i("Connection type Available")
+                            isConnected.value = true
+                            fetchReposUseCase.run(
+                                username = query
+                            ).onEach { dataState ->
+                                isLoading.value = dataState.loading
+                                dataState.data?.let { list ->
+                                    repos.value = list
+                                    isQueryValid.value = true
+                                }
 
-                            dataState.error?.let { error ->
-                                e("Error while fetching repos. $error")
-                                isQueryValid.value = false
-                            }
-                        }.launchIn(this)
-                    }
-                    is ConnectionType.Lost -> {
-                        i("Connection type lost")
-                        isConnected.value = false
-                    }
-                    else -> {
-                        i("Connection type Init")
-                        isConnected.value = false
+                                dataState.error?.let { error ->
+                                    e("Error while fetching repos. $error")
+                                    isQueryValid.value = false
+                                }
+                            }.launchIn(this)
+                        }
+                        is ConnectionType.Lost -> {
+                            i("Connection type lost")
+                            isConnected.value = false
+                        }
+                        else -> {
+                            i("Connection type Init")
+                            isConnected.value = false
+                        }
                     }
                 }
-            }
-            .catch { }
-            .launchIn(this)
+                .catch { }
+                .launchIn(this)
+        }
     }
-}
 
-fun onQueryChanged(query: String) {
-    this.query.value = query
+    fun onQueryChanged(query: String) {
+        this.query.value = query
 
-}
+    }
 
-fun onLikeStatusChanged(isLiked: Boolean) {
-    this.isLiked.value = isLiked
+    fun onLikeStatusChanged(isLiked: Boolean) {
+        this.isLiked.value = isLiked
 
-}
+    }
 
-fun updateRepo(repo: Repo) {
+    fun updateRepo(repo: Repo) {
 
-}
+    }
 
-companion object {
-    private const val MIN_SEARCHABLE_LENGTH = 2
-}
+    companion object {
+        private const val MIN_SEARCHABLE_LENGTH = 2
+    }
 }

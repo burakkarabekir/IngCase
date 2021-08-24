@@ -1,9 +1,5 @@
 package com.burakks.ingcase.domain.repositories
 
-import com.burakks.ingcase.data.cache.dao.RepoDao
-import com.burakks.ingcase.data.cache.model.RepoEntityMapper
-import com.burakks.ingcase.data.remote.model.RepoDtoMapper
-import com.burakks.ingcase.data.remote.service.RepoService
 import com.burakks.ingcase.data.cache.datasource.RepoLocalDataSource
 import com.burakks.ingcase.data.remote.datasource.RepoRemoteDataSource
 import com.burakks.ingcase.domain.model.Repo
@@ -42,7 +38,7 @@ class RepoRepository @Inject constructor(
         try {
             emit(DataState.loading())
 
-            val repo =localDataSource.getRepoById(repoId)
+            val repo = localDataSource.getRepoById(repoId)
 
             // emit from cache
             val list = localDataSource.emitFromCacheById(repo!!)

@@ -1,11 +1,11 @@
 package com.burakks.ingcase.di
 
 import com.burakks.ingcase.data.cache.dao.RepoDao
+import com.burakks.ingcase.data.cache.datasource.RepoLocalDataSource
 import com.burakks.ingcase.data.cache.model.RepoEntityMapper
+import com.burakks.ingcase.data.remote.datasource.RepoRemoteDataSource
 import com.burakks.ingcase.data.remote.model.RepoDtoMapper
 import com.burakks.ingcase.data.remote.service.RepoService
-import com.burakks.ingcase.data.cache.datasource.RepoLocalDataSource
-import com.burakks.ingcase.data.remote.datasource.RepoRemoteDataSource
 import com.burakks.ingcase.domain.repositories.RepoRepository
 import dagger.Module
 import dagger.Provides
@@ -22,7 +22,7 @@ object RepositoryModule {
     fun provideRepoRepository(
         localDataSource: RepoLocalDataSource,
         remoteDataSource: RepoRemoteDataSource
-    ) : RepoRepository {
+    ): RepoRepository {
         return RepoRepository(
             localDataSource = localDataSource,
             remoteDataSource = remoteDataSource

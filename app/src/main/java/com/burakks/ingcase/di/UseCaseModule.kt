@@ -1,9 +1,5 @@
 package com.burakks.ingcase.di
 
-import com.burakks.ingcase.data.cache.dao.RepoDao
-import com.burakks.ingcase.data.cache.model.RepoEntityMapper
-import com.burakks.ingcase.data.remote.model.RepoDtoMapper
-import com.burakks.ingcase.data.remote.service.RepoService
 import com.burakks.ingcase.domain.repositories.RepoRepository
 import com.burakks.ingcase.domain.usecases.repo_detail.FetchRepoDetailUseCase
 import com.burakks.ingcase.domain.usecases.repo_list.FetchReposUseCase
@@ -23,7 +19,7 @@ object UseCaseModule {
         repository: RepoRepository,
     ): FetchReposUseCase {
         return FetchReposUseCase(
-           repository = repository
+            repository = repository
         )
     }
 
@@ -33,7 +29,7 @@ object UseCaseModule {
         repository: RepoRepository
     ): FetchRepoDetailUseCase {
         return FetchRepoDetailUseCase(
-           repository = repository
+            repository = repository
         )
     }
 }

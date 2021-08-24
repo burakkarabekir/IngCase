@@ -10,4 +10,4 @@ data class Owner(
     @SerializedName("login")
     val login: String,
 
-)
+    )
