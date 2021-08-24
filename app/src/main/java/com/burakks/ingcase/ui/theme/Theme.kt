@@ -26,7 +26,9 @@ private val LightColorPalette = lightColors(
 )
 
 @Composable
-fun AppTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable() () -> Unit) {
+fun AppTheme(
+    darkTheme: Boolean = isSystemInDarkTheme(),
+    content: @Composable() () -> Unit) {
     val colors = LightColorPalette
 
     MaterialTheme(

@@ -26,6 +26,7 @@ class RepoListViewModel @Inject constructor(
     val isConnected = mutableStateOf(true)
     val isQueryValid = mutableStateOf(true)
     val isLiked = mutableStateOf(false)
+    val isLoading = mutableStateOf(false)
 
 fun fetchRepos(_query: String?) {
     val query = _query?.trim() ?: return
@@ -41,6 +42,7 @@ fun fetchRepos(_query: String?) {
                         fetchReposUseCase.run(
                             username = query
                         ).onEach { dataState ->
+                            isLoading.value = dataState.loading
                             dataState.data?.let { list ->
                                 repos.value = list
                                 isQueryValid.value = true

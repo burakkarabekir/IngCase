@@ -33,6 +33,7 @@ fun RepoListScreen(
 
     val isConnected = viewModel.isConnected.value
     val isQueryValid = viewModel.isQueryValid.value
+    val isLoading = viewModel.isLoading.value
 
     Column(
         modifier = Modifier.fillMaxSize()
@@ -58,9 +59,11 @@ fun RepoListScreen(
 
         Spacer(modifier = Modifier.height(SpaceSmall))
 
+        MainCircularProgressBar(isLoading)
+
         if (!isConnected)
             ConnectivityMonitor()
-        else if(!isQueryValid)
+        else if (!isQueryValid)
             NothingHere()
         else {
             LazyColumn(
