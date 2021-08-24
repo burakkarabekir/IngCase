@@ -78,22 +78,20 @@ fun RepoDetailScreen(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.Top
             ) {
-                if (repo.id != null) {
-                    Image(
-                        modifier = Modifier.size(OWNER_IMAGE_SIZE.dp),
-                        painter = rememberImagePainter(
-                            data = "https://avatars.githubusercontent.com/u/${repo.id}?v=4",
-                            builder = {
-//                            crossfade(300)
-                                transformations(
-                                    CircleCropTransformation(),
-                                )
-                            }
-                        ),
-                        contentDescription = stringResource(R.string.profile),
-                        contentScale = ContentScale.Crop,
-                    )
-                }
+                Image(
+                    modifier = Modifier.size(OWNER_IMAGE_SIZE.dp),
+                    painter = rememberImagePainter(
+                        data = repo.avatar,
+                        builder = {
+                            crossfade(300)
+                            transformations(
+                                CircleCropTransformation(),
+                            )
+                        }
+                    ),
+                    contentDescription = stringResource(R.string.profile),
+                    contentScale = ContentScale.Crop,
+                )
 
                 Text(
                     text = repo.description ?: stringResource(R.string.description),

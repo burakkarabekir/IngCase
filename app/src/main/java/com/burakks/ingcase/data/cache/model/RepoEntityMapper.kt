@@ -28,7 +28,8 @@ class RepoEntityMapper : DomainMapper<RepoEntity, Repo> {
             stargazersCount = domainModel.stargazersCount,
             forksCount = domainModel.forksCount,
             watchersCount = domainModel.watchersCount,
-            description = domainModel.description ?: "Repo Description"
+            description = domainModel.description ?: "Repo Description",
+            avatar = domainModel.avatar
         )
     }
 
@@ -42,7 +43,8 @@ class RepoEntityMapper : DomainMapper<RepoEntity, Repo> {
             stargazersCount = domainModel.stargazersCount,
             forksCount = domainModel.forksCount,
             watchersCount = domainModel.watchersCount,
-            description = domainModel.description ?: "Repo Description"
+            description = domainModel.description ?: "Repo Description",
+            avatar = domainModel.avatar,
         )
     }
 

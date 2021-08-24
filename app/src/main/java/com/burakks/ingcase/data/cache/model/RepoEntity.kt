@@ -33,4 +33,7 @@ data class RepoEntity(
 
     @ColumnInfo(name = "description")
     val description: String,
+
+    @ColumnInfo(name = "avatar")
+    val avatar: String,
 )
