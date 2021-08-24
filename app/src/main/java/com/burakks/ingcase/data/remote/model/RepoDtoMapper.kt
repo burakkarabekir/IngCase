@@ -24,7 +24,6 @@ class RepoDtoMapper : DomainMapper<RepoDto, Repo> {
             name = domainModel.name,
             url = domainModel.url,
             openIssuesCount = domainModel.openIssueCount,
-            owner = Owner("", ""),
             private = false,
             pushedAt = "",
             stargazersCount = domainModel.stargazersCount,

@@ -16,9 +16,6 @@ data class RepoDto(
     @SerializedName("open_issues_count")
     val openIssuesCount: Int,
 
-    @SerializedName("owner")
-    val owner: Owner,
-
     @SerializedName("private")
     val `private`: Boolean,
 
