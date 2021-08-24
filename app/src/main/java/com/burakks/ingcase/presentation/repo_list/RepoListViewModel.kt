@@ -59,6 +59,7 @@ class RepoListViewModel @Inject constructor(
                         }
                         else -> {
                             i("Connection type Init")
+                            isConnected.value = true
                         }
                     }
                 }

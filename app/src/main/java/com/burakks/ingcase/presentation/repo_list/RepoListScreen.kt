@@ -32,7 +32,7 @@ fun RepoListScreen(
     val isLiked = viewModel.isLiked.value
 
     val isConnected = viewModel.isConnected.value
-    val isQueryValid = viewModel.isQueryValid.value
+    // val isQueryValid = viewModel.isQueryValid.value
     val isLoading = viewModel.isLoading.value
 
     Column(
