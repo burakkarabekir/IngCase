@@ -61,31 +61,27 @@ fun RepoListScreen(
 
         MainCircularProgressBar(isLoading)
 
-        if (!isConnected)
-            ConnectivityMonitor()
-        else if (!isQueryValid)
-            NothingHere()
-        else {
-            LazyColumn(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(SpaceLarge)
-            ) {
-                itemsIndexed(
-                    items = repos
-                ) { _, repo ->
-                    RepoCard(
-                        repo = repo,
-                        modifier = Modifier.fillMaxWidth(),
-                        isLiked = isLiked,
-                        onLikeClick = {},
-                        onRepoClick = {
-                            navController.navigate(
-                                "repo_detail_screen/${repo.id}"
-                            )
-                        }
-                    )
-                }
+        ConnectivityMonitor(isConnected)
+
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(SpaceLarge)
+        ) {
+            itemsIndexed(
+                items = repos
+            ) { _, repo ->
+                RepoCard(
+                    repo = repo,
+                    modifier = Modifier.fillMaxWidth(),
+                    isLiked = isLiked,
+                    onLikeClick = {},
+                    onRepoClick = {
+                        navController.navigate(
+                            "repo_detail_screen/${repo.id}"
+                        )
+                    }
+                )
             }
         }
     }

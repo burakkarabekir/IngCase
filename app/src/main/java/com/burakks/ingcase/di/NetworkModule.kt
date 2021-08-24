@@ -5,6 +5,7 @@ import android.net.ConnectivityManager
 import com.burakks.ingcase.BuildConfig
 import com.burakks.ingcase.data.remote.model.RepoDtoMapper
 import com.burakks.ingcase.data.remote.service.RepoService
+import com.burakks.ingcase.data.remote.util.ApiKeyInterceptor
 import com.burakks.ingcase.util.Constants.BASE_URL
 import com.burakks.ingcase.util.network.ConnectionType
 import com.burakks.ingcase.util.network.connectionState
@@ -57,6 +58,7 @@ object NetworkModule {
         builder.connectTimeout(10, TimeUnit.SECONDS)
         builder.readTimeout(10, TimeUnit.SECONDS)
         builder.writeTimeout(10, TimeUnit.SECONDS)
+        builder.addInterceptor(ApiKeyInterceptor())
         builder.addInterceptor(loggingInterceptor)
         return builder.build()
     }

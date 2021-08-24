@@ -39,6 +39,5 @@ fun NothingHere() {
                 style = MaterialTheme.typography.body1,
             )
         }
-
     }
 }

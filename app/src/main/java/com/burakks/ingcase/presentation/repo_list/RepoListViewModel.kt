@@ -25,7 +25,7 @@ class RepoListViewModel @Inject constructor(
     val repos: MutableState<List<Repo>> = mutableStateOf(listOf())
     val query = mutableStateOf("")
     val isConnected = mutableStateOf(true)
-    val isQueryValid = mutableStateOf(true)
+    // val isQueryValid = mutableStateOf(true)
     val isLiked = mutableStateOf(false)
     val isLoading = mutableStateOf(false)
 
@@ -46,12 +46,10 @@ class RepoListViewModel @Inject constructor(
                                 isLoading.value = dataState.loading
                                 dataState.data?.let { list ->
                                     repos.value = list
-                                    isQueryValid.value = true
                                 }
 
                                 dataState.error?.let { error ->
                                     e("Error while fetching repos. $error")
-                                    isQueryValid.value = false
                                 }
                             }.launchIn(this)
                         }
@@ -61,7 +59,6 @@ class RepoListViewModel @Inject constructor(
                         }
                         else -> {
                             i("Connection type Init")
-                            isConnected.value = false
                         }
                     }
                 }

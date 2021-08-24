@@ -6,6 +6,12 @@ Github Android client app that gets data from a Github API and shows user reposi
 
 ![Github Android Client Demo](https://github.com/burakkarabekir/IngCase/tree/master/intro/demo.gif)
 
+## Development
+
+### API Key
+
+To run the application you need to supply an API key from [Github](https://github.com/settings/tokens). When you get the key please add following variable to your local environment.
+
 # API
 
 https://api.github.com/

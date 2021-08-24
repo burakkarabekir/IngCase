@@ -16,17 +16,20 @@ import com.burakks.ingcase.ui.theme.TextDark
 
 @Composable
 fun ConnectivityMonitor(
+    isNetworkAvailable: Boolean,
 ) {
-    Column(modifier = Modifier.fillMaxWidth()) {
-        Text(
-            stringResource(R.string.no_internet_connection),
-            modifier = Modifier
-                .align(Alignment.CenterHorizontally)
-                .padding(SpaceLarge),
-            style = MaterialTheme.typography.body1.copy(
-                fontSize = 20.sp
-            ),
-            color = TextDark
-        )
+    if (!isNetworkAvailable) {
+        Column(modifier = Modifier.fillMaxWidth()) {
+            Text(
+                stringResource(R.string.no_internet_connection),
+                modifier = Modifier
+                    .align(Alignment.CenterHorizontally)
+                    .padding(SpaceLarge),
+                style = MaterialTheme.typography.body1.copy(
+                    fontSize = 20.sp
+                ),
+                color = TextDark
+            )
+        }
     }
 }
