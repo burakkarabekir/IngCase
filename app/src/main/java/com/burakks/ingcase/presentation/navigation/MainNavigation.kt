@@ -1,6 +1,5 @@
 package com.burakks.ingcase.presentation.navigation
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
@@ -11,12 +10,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.burakks.ingcase.presentation.repo_detail.RepoDetailScreen
 import com.burakks.ingcase.presentation.repo_list.RepoListScreen
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @ExperimentalMaterialApi
 @ExperimentalComposeUiApi
-@ExperimentalCoroutinesApi
-@ExperimentalFoundationApi
 @Composable
 fun MainNavigation(navController: NavHostController) {
     NavHost(

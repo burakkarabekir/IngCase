@@ -5,13 +5,14 @@ import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
 import android.net.NetworkRequest
-import android.os.Build
+import android.os.Build.VERSION.SDK_INT
+import android.os.Build.VERSION_CODES.Q
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 private val connectionListener: MutableStateFlow<ConnectionType> =
-    MutableStateFlow(ConnectionType.Init())
+    MutableStateFlow(ConnectionType.Initialise())
 
 private val networkRequest: NetworkRequest = NetworkRequest
     .Builder()
@@ -30,8 +31,8 @@ fun connectionState(manager: ConnectivityManager): StateFlow<ConnectionType> {
 
     registerNetwork(manager)
 
-    if (!checkInfoIfFirstLaunchNotConnection(manager)) {
-        connectionListener.tryEmit(ConnectionType.Lost(true))
+    if (!checkLaunchConnectionInfo(manager)) {
+        connectionListener.tryEmit(ConnectionType.Lost(connected = true))
     }
 
     return connectionListener.asStateFlow()
@@ -47,12 +48,12 @@ private fun registerNetwork(manager: ConnectivityManager) =
             override fun onAvailable(network: Network) {
                 super.onAvailable(network)
                 manager.bindProcessToNetwork(network)
-                connectionListener.tryEmit(ConnectionType.Available(true))
+                connectionListener.tryEmit(ConnectionType.Available(connected = true))
             }
 
             override fun onLost(network: Network) {
                 super.onLost(network)
-                connectionListener.tryEmit(ConnectionType.Lost(true))
+                connectionListener.tryEmit(ConnectionType.Lost(connected = true))
             }
         })
 
@@ -60,8 +61,9 @@ private fun registerNetwork(manager: ConnectivityManager) =
  * This method checked network by first launch app.
  * Since the registerNetworkCallback is not working if first launch no network.
  */
-private fun checkInfoIfFirstLaunchNotConnection(connectivityManager: ConnectivityManager): Boolean {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+
+private fun checkLaunchConnectionInfo(connectivityManager: ConnectivityManager): Boolean {
+    if (isQOrAbove()) {
         val capabilities =
             connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
         if (capabilities != null) {
@@ -81,3 +83,5 @@ private fun checkInfoIfFirstLaunchNotConnection(connectivityManager: Connectivit
     }
     return false
 }
+
+private fun isQOrAbove() = SDK_INT >= Q

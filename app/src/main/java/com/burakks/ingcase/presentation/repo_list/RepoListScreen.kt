@@ -1,6 +1,5 @@
 package com.burakks.ingcase.presentation.repo_list
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -18,12 +17,9 @@ import com.burakks.ingcase.R
 import com.burakks.ingcase.presentation.components.*
 import com.burakks.ingcase.ui.theme.SpaceLarge
 import com.burakks.ingcase.ui.theme.SpaceSmall
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @ExperimentalMaterialApi
 @ExperimentalComposeUiApi
-@ExperimentalCoroutinesApi
-@ExperimentalFoundationApi
 @Composable
 fun RepoListScreen(
     navController: NavHostController,

@@ -50,11 +50,11 @@ class RepoDaoTest : BaseDaoTest() {
     }
 
     companion object {
-        private val TEST_ENTRY = RepoEntity(1, "adessoTurkey", "adessoTurkey", false, 12, 21, 12, 12, "")
+        private val TEST_ENTRY = RepoEntity(1, "adessoTurkey", "adessoTurkey", false, 12, 21, 12, 12, "", "")
         private val TEST_ENTRIES = listOf(
-            RepoEntity(1, "adessoTurkey", "adessoTurkey", false, 12, 21, 12, 12, ""),
-            RepoEntity(2, "burakkarabekir", "burakkarabekir", false, 12, 21, 12, 12, ""),
-            RepoEntity(3, "burakkarabekir", "burakkarabekir", false, 12, 21, 12, 12, ""),
+            RepoEntity(1, "adessoTurkey", "adessoTurkey", false, 12, 21, 12, 12, "", ""),
+            RepoEntity(2, "burakkarabekir", "burakkarabekir", false, 12, 21, 12, 12, "", ""),
+            RepoEntity(3, "burakkarabekir", "burakkarabekir", false, 12, 21, 12, 12, "", ""),
         )
     }
 }

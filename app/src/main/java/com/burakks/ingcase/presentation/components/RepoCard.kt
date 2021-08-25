@@ -19,10 +19,8 @@ import androidx.compose.ui.unit.sp
 import com.burakks.ingcase.domain.model.Repo
 import com.burakks.ingcase.ui.theme.*
 import com.burakks.ingcase.util.Constants
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @ExperimentalMaterialApi
-@ExperimentalCoroutinesApi
 @Composable
 fun RepoCard(
     repo: Repo,
