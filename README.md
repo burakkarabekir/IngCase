@@ -10,7 +10,7 @@ Github Android client app that gets data from a Github API and shows user reposi
 
 ### API Key
 
-To run the application you need to supply an API key from [Github](https://github.com/settings/tokens). When you get the key please add following variable to your local environment.
+An API key should be obtained from [Github](https://github.com/settings/tokens) to run the application without daily request limitations. When you get the key please add the following variable to your local environment.
 
 # API
 
