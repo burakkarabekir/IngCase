@@ -5,7 +5,7 @@ import com.burakks.ingcase.domain.util.DataState
 import kotlinx.coroutines.flow.Flow
 
 interface RepoRepository {
-    fun execute(username: String): Flow<DataState<List<Repo>>>
-    fun execute(repoId: Int): Flow<DataState<Repo>>
-    fun update(repo: Repo): Flow<DataState<Repo>>
+    suspend fun execute(username: String): Flow<DataState<List<Repo>>>
+    suspend fun execute(repoId: Int): Flow<DataState<Repo>>
+    suspend fun update(repo: Repo): Flow<DataState<Repo>>
 }

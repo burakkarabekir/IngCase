@@ -13,7 +13,7 @@ class RepoRepositoryImpl @Inject constructor(
     private val localDataSource: RepoLocalDataSource,
     private val remoteDataSource: RepoRemoteDataSource
 ) : RepoRepository {
-    override fun execute(
+    override suspend fun execute(
         username: String,
     ): Flow<DataState<List<Repo>>> = flow {
         try {
@@ -33,7 +33,7 @@ class RepoRepositoryImpl @Inject constructor(
         }
     }
 
-    override fun execute(
+    override suspend fun execute(
         repoId: Int,
     ): Flow<DataState<Repo>> = flow {
         try {
@@ -51,7 +51,7 @@ class RepoRepositoryImpl @Inject constructor(
         }
     }
 
-    override fun update(
+    override suspend fun update(
         repo: Repo,
     ): Flow<DataState<Repo>> = flow {
         localDataSource.updateRepo(repo)
