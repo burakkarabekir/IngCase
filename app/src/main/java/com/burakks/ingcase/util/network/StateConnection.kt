@@ -27,11 +27,11 @@ private val networkRequest: NetworkRequest = NetworkRequest
  * This method checked by first launch network state and
  * return stateFlow with info by connection type
  */
-fun connectionState(manager: ConnectivityManager): StateFlow<ConnectionType> {
+fun ConnectivityManager.connectionState(): StateFlow<ConnectionType> {
 
-    registerNetwork(manager)
+    registerNetwork(this)
 
-    if (!checkLaunchConnectionInfo(manager)) {
+    if (!this.checkLaunchConnectionInfo()) {
         connectionListener.tryEmit(ConnectionType.Lost(connected = true))
     }
 
@@ -62,21 +62,24 @@ private fun registerNetwork(manager: ConnectivityManager) =
  * Since the registerNetworkCallback is not working if first launch no network.
  */
 
-private fun checkLaunchConnectionInfo(connectivityManager: ConnectivityManager): Boolean {
+private fun ConnectivityManager.checkLaunchConnectionInfo(): Boolean {
     if (isQOrAbove()) {
-        val capabilities =
-            connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
-        if (capabilities != null) {
-            when {
-                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) ||
-                        capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) ||
-                        capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> {
-                    return true
+        val hasCapability = this.getNetworkCapabilities(
+            this.activeNetwork
+        )?.run {
+            return when {
+                this.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) ||
+                        this.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) ||
+                        this.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> {
+                    true
                 }
+                else -> false
             }
         }
+
+
     } else {
-        val activeNetworkInfo = connectivityManager.activeNetworkInfo
+        val activeNetworkInfo = this.activeNetworkInfo
         if (activeNetworkInfo != null && activeNetworkInfo.isConnected) {
             return true
         }

@@ -82,5 +82,5 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideNetworkState(manager: ConnectivityManager): StateFlow<@JvmWildcard ConnectionType> =
-        connectionState(manager)
+        manager.connectionState()
 }
